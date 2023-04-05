@@ -8,7 +8,7 @@ function capitalize(s) {
     return s.slice(0,1).toUpperCase() + s.slice(1).toLowerCase();
 }
 
-let playerScore, computerScore = 0;
+let playerScore = 0, computerScore = 0;
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = capitalize(playerSelection);
@@ -20,19 +20,29 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection == "Paper" && computerSelection == "Rock") ||
         (playerSelection == "Scissors" && computerSelection == "Paper")
     ) {
+        playerScore += 1;
         return "You Win! "; 
     } else {
+        computerScore += 1;
         return "You Lose! "; 
     }
 }
 
 function game() {
-    for (let i = 0; i < 5; i++) {
+    while (playerScore < 5 && computerScore < 5) {
         const computerSelection = getComputerChoice();
         console.log("Computer Choice: " + computerSelection);
-        let playerSelection = prompt("Enter Your Choice (Rock/Paper/Scissors): ");
+
+        const playerSelection = prompt("Player: " + playerScore + " Computer: " + computerScore + "\nEnter Your Choice (Rock/Paper/Scissors): ");
         console.log("Player Choice: " + capitalize(playerSelection));
+
         console.log(playRound(playerSelection, computerSelection));
+        
+        if (playerScore == 5) {
+            console.log("You scored 5 points. You won!");
+        } else if (computerScore == 5) {
+            console.log("Computer wins. Game Over.");
+        }
     }
 }
 
