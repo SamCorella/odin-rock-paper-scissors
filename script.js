@@ -1,47 +1,54 @@
+let playerScore = 0, computerScore = 0;
+
+const buttons = document.querySelectorAll('button');
+const container = document.querySelector('#container');
+const choices = document.createElement('div');
+const results = document.createElement('p');
+const scores = document.createElement('p');
+container.appendChild(choices);
+container.appendChild(results);
+container.appendChild(scores);
+
 function getComputerChoice() {
     const choices = ["Rock", "Paper", "Scissors"];
     let randNum = Math.floor(Math.random() * 3);
     return choices[randNum];
 }
 
-let playerScore = 0, computerScore = 0;
-
 function playRound(playerSelection) {
     const computerSelection = getComputerChoice();
+    choices.innerHTML = "<p>Player Choice: " + playerSelection + "</p><p>Computer Choice: " + computerSelection + "</p>";
 
     if (playerSelection == computerSelection) {
-        return "Tie! " + playerSelection + " and " + computerSelection; 
-    }  else if (
+        return "Tie!"; 
+
+    }  else if ( // Player Wins Round
         (playerSelection == "Rock" && computerSelection == "Scissors") ||
         (playerSelection == "Paper" && computerSelection == "Rock") ||
         (playerSelection == "Scissors" && computerSelection == "Paper")
     ) {
         playerScore += 1;
-        return "You Win! " + playerSelection + " beats " + computerSelection; 
-    } else {
+        if (playerScore == 5) {
+            buttons.forEach((button) => button.disabled = true);
+            return "Player Wins! Reload to play again."; 
+        }
+
+        return "You Win!";
+
+    } else { // Computer Wins Round
         computerScore += 1;
-        return "You Lose! " + computerSelection + " beats " + playerSelection; 
+        if (computerScore == 5) {
+            buttons.forEach((button) => button.disabled = true);
+            return "Computer Wins! Reload to try again."; 
+        }
+
+        return "You Lose!";
     }
 }
-
-const buttons = document.querySelectorAll('button');
-const container = document.querySelector('#container');
-const results = document.createElement('p');
-const scores = document.createElement('p');
-container.appendChild(results);
-container.appendChild(scores);
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         results.textContent = playRound(button.id);
-        scores.textContent = "Player: " + playerScore + "\nComputer: " + computerScore;
-
-        if (playerScore == 5) {
-            results.textContent = "Player Wins! Reload to play again.";
-            buttons.forEach((button) => button.disabled = true);            
-        } else if (computerScore == 5) {
-            results.textContent = "Computer Wins! Reload to try again.";
-            buttons.forEach((button) => button.disabled = true);            
-        }
+        scores.textContent = "Player: " + playerScore + " Computer: " + computerScore; 
     });
 });
