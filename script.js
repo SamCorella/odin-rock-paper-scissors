@@ -35,5 +35,13 @@ buttons.forEach((button) => {
     button.addEventListener('click', () => {
         results.textContent = playRound(button.id);
         scores.textContent = "Player: " + playerScore + "\nComputer: " + computerScore;
+
+        if (playerScore == 5) {
+            results.textContent = "Player Wins! Reload to play again.";
+            buttons.forEach((button) => button.disabled = true);            
+        } else if (computerScore == 5) {
+            results.textContent = "Computer Wins! Reload to try again.";
+            buttons.forEach((button) => button.disabled = true);            
+        }
     });
 });
