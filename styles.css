@@ -1,0 +1,16 @@
+button {
+    background-color: lightseagreen;
+    border: none;
+    color: white;
+    opacity: 0.7;
+    padding: 16px 32px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button.disabled {
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+button:hover {opacity: 1}

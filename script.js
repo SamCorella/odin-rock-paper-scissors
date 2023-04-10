@@ -29,7 +29,7 @@ function playRound(playerSelection) {
     ) {
         playerScore += 1;
         if (playerScore == 5) {
-            buttons.forEach((button) => button.disabled = true);
+            buttons.forEach((button) => button.classList.add('disabled'));
             return "Player Wins! Reload to play again."; 
         }
 
@@ -38,7 +38,7 @@ function playRound(playerSelection) {
     } else { // Computer Wins Round
         computerScore += 1;
         if (computerScore == 5) {
-            buttons.forEach((button) => button.disabled = true);
+            buttons.forEach((button) => button.classList.add('disabled'));
             return "Computer Wins! Reload to try again."; 
         }
 
