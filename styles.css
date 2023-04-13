@@ -1,11 +1,35 @@
+.main-container {
+    display: flex;
+}
+
+.player-selection {
+    flex-direction: column; 
+}
+
+p {
+    text-align: center;
+}
+
 button {
     background-color: lightseagreen;
     border: none;
+    border-radius: 4px;
     color: white;
     opacity: 0.7;
+    margin: 2px;
     padding: 16px 32px;
     font-size: 16px;
     transition: 0.3s;
+    width: 100%;
+}
+
+button.computer-selection {
+    flex-direction: column;
+    background-color: crimson;
+}
+
+button#play-again {
+    display: none;
 }
 
 button.disabled {
@@ -14,3 +38,13 @@ button.disabled {
 }
 
 button:hover {opacity: 1}
+
+#results-container {
+    flex: 1;
+    background-color: darkslategrey;
+    color:antiquewhite;
+    border-radius: 2px;
+    text-align: center;
+    margin: 0px 10px;
+    padding: 0px 5px;
+}

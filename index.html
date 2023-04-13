@@ -7,10 +7,23 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <button id="Rock">Rock</button>
-    <button id="Paper">Paper</button>
-    <button id="Scissors">Scissors</button>
+    <div class="main-container">
+        <div>
+            <p>Player</p>
+            <button class="player-selection" id="rock">Rock</button><br>
+            <button class="player-selection" id="paper">Paper</button><br>
+            <button class="player-selection" id="scissors">Scissors</button>
+        </div>
 
-    <div id="container"></div>
+        <div id="results-container"></div>
+
+        <div>
+            <p>Computer</p>
+            <button class="computer-selection" id="computer-rock">Rock</button><br>
+            <button class="computer-selection" id="computer-paper">Paper</button><br>
+            <button class="computer-selection" id="computer-scissors">Scissors</button>
+        </div>
+    </div> 
+    <button id="play-again">Play Again</button>
 </body>
 </html>
