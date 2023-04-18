@@ -3,7 +3,24 @@
 }
 
 .player-selection {
-    flex-direction: column; 
+    flex-direction: column;
+    background-color: lightseagreen;
+    justify-content: center;
+    align-items: center;
+}
+
+.computer-selection {
+    flex-direction: column;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: 0.5s;
+    background-color: crimson;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    opacity: 1;
 }
 
 p {
@@ -11,33 +28,28 @@ p {
 }
 
 button {
-    background-color: lightseagreen;
     border: none;
     border-radius: 4px;
     color: white;
-    opacity: 0.7;
+    font-size: 16px;
     margin: 2px;
     padding: 16px 32px;
-    font-size: 16px;
+    opacity: 0.7;
     transition: 0.3s;
     width: 100%;
 }
 
-button.computer-selection {
-    flex-direction: column;
-    background-color: crimson;
-}
-
-button#play-again {
-    display: none;
-}
+button:hover {opacity: 1}
 
 button.disabled {
     pointer-events: none;
     opacity: 0.3;
 }
 
-button:hover {opacity: 1}
+button#play-again {
+    display: none;
+    background-color: darkseagreen;
+}
 
 #results-container {
     flex: 1;

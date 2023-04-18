@@ -1,12 +1,11 @@
 let playerScore = 0, computerScore = 0;
 
-const choices = document.querySelectorAll('.player-selection');
+const playerBtns = document.querySelectorAll('.player-selection');
+const computerBtns = document.querySelectorAll('.computer-selection');
 const container = document.querySelector('#results-container');
 const playAgainBtn = document.querySelector('#play-again');
-const selected = document.createElement('div');
 const results = document.createElement('p');
 const scores = document.createElement('p');
-container.appendChild(selected);
 container.appendChild(results);
 container.appendChild(scores);
 
@@ -17,13 +16,19 @@ function getComputerChoice() {
 }
 
 function endGame() {
-    choices.forEach((button) => button.classList.toggle('disabled'));
+    playerBtns.forEach((button) => button.classList.toggle('disabled'));
     playAgainBtn.style.display = 'block';
 }
 
 function playRound(playerSelection) {
     const computerSelection = getComputerChoice();
-    selected.innerHTML = "<p>Player Selected: " + playerSelection + "</p><p>Computer Selected: " + computerSelection + "</p>";
+    computerBtns.forEach((button) => {
+        if (button.id == "computer-" + computerSelection) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+    })
 
     if (playerSelection == computerSelection) {
         return "Tie!"; 
@@ -52,7 +57,7 @@ function playRound(playerSelection) {
     }
 }
 
-choices.forEach((button) => {
+playerBtns.forEach((button) => {
     button.addEventListener('click', () => {
         results.textContent = playRound(button.id);
         scores.textContent = "Player: " + playerScore + " Computer: " + computerScore; 
@@ -60,10 +65,9 @@ choices.forEach((button) => {
 });
 
 playAgainBtn.addEventListener('click', () => {
-    selected.innerHTML = "<p>Player Selected:</p><p>Computer Selected:</p>";
     playerScore = 0;
     computerScore = 0;
     scores.textContent = "Player: " + playerScore + " Computer: " + computerScore; 
-    choices.forEach((button) => button.classList.toggle('disabled'));
+    playerBtns.forEach((button) => button.classList.toggle('disabled'));
     playAgainBtn.style.display ='none';
 })
